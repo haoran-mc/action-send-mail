@@ -28,12 +28,12 @@ jobs:
 
     - name: Run script
       env:
-          MAIL_HOST: ${{ env.MAIL_HOST }}
-          MAIL_PORT: ${{ env.MAIL_PORT }}
-          MAIL_USER: ${{ env.MAIL_USER }}
-          MAIL_PASS: ${{ env.MAIL_PASS }}
-          MAIL_SENDER: ${{ env.MAIL_SENDER }}
-          MAIL_RECEIVER: ${{ env.MAIL_RECEIVER }}
+        MAIL_HOST: ${{ env.MAIL_HOST }}
+        MAIL_PORT: ${{ env.MAIL_PORT }}
+        MAIL_USER: ${{ env.MAIL_USER }}
+        MAIL_PASS: ${{ env.MAIL_PASS }}
+        MAIL_SENDER: ${{ env.MAIL_SENDER }}
+        MAIL_RECEIVER: ${{ env.MAIL_RECEIVER }}
       run: |
         python3 mail.py
 
