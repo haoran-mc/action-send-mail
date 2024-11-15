@@ -38,7 +38,7 @@ def send_email(subject, html_body):
 
     try:
         with smtplib.SMTP_SSL(MAIL_HOST, int(MAIL_PORT)) as server:
-            server.set_debuglevel(1)
+            # server.set_debuglevel(1)
             server.login(MAIL_USER, MAIL_PASS)
             server.sendmail(MAIL_SENDER, MAIL_RECEIVER, msg.as_string())
             print("Email sent successfully.")
