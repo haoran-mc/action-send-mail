@@ -17,6 +17,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    - name: Checkout Env
+      run: echo "${{ env.MAIL_HOST }} ${{ secrets.MAIL_HOST }}."
+
     - name: Set up Python3
       uses: actions/setup-python@v5
       with:
