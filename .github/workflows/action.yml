@@ -27,6 +27,13 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run script
+      env:
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+          MAIL_PORT: ${{ secrets.MAIL_PORT }}
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_SENDER: ${{ secrets.MAIL_SENDER }}
+          MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
       run: |
         python3 mail.py
 
