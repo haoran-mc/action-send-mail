@@ -17,7 +17,7 @@ MAIL_PORT = os.environ.get("MAIL_PORT")
 MAIL_USER = os.environ.get("MAIL_USER")
 MAIL_PASS = os.environ.get("MAIL_PASS")
 MAIL_SENDER = os.environ.get("MAIL_SENDER")
-# user@qq.com,user2@qq.com
+# user1@qq.com,user2@qq.com
 MAIL_RECEIVER = os.environ.get("MAIL_RECEIVER", "").split(",")
 
 START_URL = "https://github.com/ruanyf/weekly"
@@ -26,6 +26,7 @@ HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
 }
+
 
 def send_email(subject, html_body):
     msg = MIMEMultipart()
@@ -49,13 +50,14 @@ def send_email(subject, html_body):
     except Exception as e:
         print(f"Error sending email: {e}")
 
+
 @retry(stop=stop_after_attempt(3))
 def get_mail_content():
     """
     获取邮件内容
     """
     resp = requests.get(START_URL, headers=HEADERS).text
-    result = re.findall(r'<a href=\"(.*?issue-\d*\.md)\">(.*?)</a>', resp)
+    result = re.findall(r"<a href=\"(.*?issue-\d*\.md)\">(.*?)</a>", resp)
     url, num = result[0]
 
     readme_url = "https://github.com" + url

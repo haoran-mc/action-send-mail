@@ -3,7 +3,8 @@ name: 'Github Action Email Bot'
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 11 * * *'
+    # GitHub Actions 始终以 UTC 时间为准，不支持其他地区
+    - cron: '0 3 * * *'
 
 jobs:
   build:
@@ -36,4 +37,3 @@ jobs:
         MAIL_RECEIVER: ${{ secrets.MAIL_RECEIVER }}
       run: |
         python3 mail.py
-
