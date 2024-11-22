@@ -82,7 +82,7 @@ def get_mail_content():
 
 
 def ruan_blog():
-    if datetime.datetime.now().weekday() != 4:
+    if datetime.datetime.now().weekday() != 0:
         return
 
     content = get_mail_content()
