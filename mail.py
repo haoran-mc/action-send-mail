@@ -13,11 +13,19 @@ from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt
 import pytz
 
-MAIL_HOST = os.environ.get("MAIL_HOST")
-MAIL_PORT = os.environ.get("MAIL_PORT")
-MAIL_USER = os.environ.get("MAIL_USER")
-MAIL_PASS = os.environ.get("MAIL_PASS")
-MAIL_SENDER = os.environ.get("MAIL_SENDER")
+
+def get_env_var(name: str) -> str:
+    value = os.environ.get(name)
+    if not value:
+        raise ValueError(f"The environment variable {name} must be set")
+    return value
+
+
+MAIL_HOST = get_env_var("MAIL_HOST")
+MAIL_PORT = get_env_var("MAIL_PORT")
+MAIL_USER = get_env_var("MAIL_USER")
+MAIL_PASS = get_env_var("MAIL_PASS")
+MAIL_SENDER = get_env_var("MAIL_SENDER")
 # user1@qq.com,user2@qq.com
 MAIL_RECEIVER = os.environ.get("MAIL_RECEIVER", "").split(",")
 
