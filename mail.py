@@ -11,6 +11,7 @@ from email.mime.multipart import MIMEMultipart
 import requests
 from bs4 import BeautifulSoup
 from tenacity import retry, stop_after_attempt
+import pytz
 
 MAIL_HOST = os.environ.get("MAIL_HOST")
 MAIL_PORT = os.environ.get("MAIL_PORT")
@@ -82,6 +83,11 @@ def get_mail_content():
 
 
 def ruan_blog():
+    # print current time
+    timezone = pytz.timezone("Asia/Shanghai")
+    print("The current time is: ", timezone.localize(datetime.datetime.now()))
+
+    # send on monday
     if datetime.datetime.now().weekday() != 0:
         return
 
